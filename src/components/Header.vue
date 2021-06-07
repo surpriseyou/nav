@@ -16,12 +16,27 @@
       <img src="/svg/search.svg" alt="">
       <input type="text">
     </div>
+
+    <div class="datetime">{{ dateTime }}</div>
   </header>
 </template>
 
-<script>
-export default {
-  name: "Header"
+<script lang="ts">
+import {Vue, Options} from 'vue-class-component';
+import moment from "moment";
+
+@Options({
+  name: 'Header'
+})
+export default class extends Vue {
+  dateTime = '';
+
+  created() {
+    setInterval(() => {
+      moment.locale('zh-cn');
+      this.dateTime = moment().format('a h:mm:ss');
+    }, 1000);
+  }
 }
 </script>
 
@@ -100,5 +115,13 @@ header {
     }
 
   }
+}
+
+.datetime {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 0 10px;
 }
 </style>

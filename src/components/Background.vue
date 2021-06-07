@@ -1,27 +1,37 @@
 <template>
   <teleport to="body">
-    <div class="background-panel">
-
-    </div>
+    <canvas id="bgCanvas"></canvas>
   </teleport>
 </template>
 
-<script>
-export default {
-  name: "Background"
-}
+<script lang="ts">
+
+import {skyBg} from "@/canvas/sky";
+
+import {defineComponent, onMounted} from "vue";
+
+export default defineComponent({
+  name: "Background",
+  setup() {
+    onMounted(() => {
+      const canvas = document.getElementById('bgCanvas') as HTMLCanvasElement;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const ctx = canvas.getContext('2d')!;
+      skyBg(ctx);
+    })
+    return {}
+  }
+})
 </script>
 
 <style scoped lang="scss">
-.background-panel {
+canvas {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("/bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
   top: 0;
   left: 0;
+  height: 100%;
+  width: 100%;
   z-index: -1;
 }
 </style>
