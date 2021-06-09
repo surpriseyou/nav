@@ -31,7 +31,7 @@ import moment from "moment";
 export default class extends Vue {
   dateTime = '';
 
-  created() {
+  created(): void {
     setInterval(() => {
       moment.locale('zh-cn');
       this.dateTime = moment().format('a h:mm:ss');

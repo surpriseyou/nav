@@ -6,9 +6,9 @@
 
 <script lang="ts">
 
-import {skyBg} from "@/canvas/sky";
 
 import {defineComponent, onMounted} from "vue";
+import Sky from "@/canvas/sky";
 
 export default defineComponent({
   name: "Background",
@@ -17,8 +17,9 @@ export default defineComponent({
       const canvas = document.getElementById('bgCanvas') as HTMLCanvasElement;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const ctx = canvas.getContext('2d')!;
-      skyBg(ctx);
+      new Sky(ctx).draw();
     })
     return {}
   }
