@@ -2,6 +2,7 @@ import Star from "@/canvas/star";
 import Meteor from "@/canvas/meteor";
 import IRender from "@/canvas/iRender";
 import {dayGradientColor, getCurrentTimeRange, timeRangeOfDay} from "@/common/utils";
+import {Sun} from "@/canvas/sun";
 
 export default class Sky {
     width: number;
@@ -59,10 +60,14 @@ export default class Sky {
                     this.objects.push(new Meteor(this.context, this.width, this.height));
                 }
 
+                this.objects.push(new Sun(this.context, this.width, this.height));
+
                 break;
             case timeRangeOfDay.morning:
+                this.objects.push(new Sun(this.context, this.width, this.height));
                 break;
             case timeRangeOfDay.afternoon:
+                this.objects.push(new Sun(this.context, this.width, this.height));
                 break;
             case timeRangeOfDay.evening:
                 break;

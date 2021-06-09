@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header v-if="false">
 
     <div class="logo-container">
       <img src="/logo.jpg" alt="" class="logo">

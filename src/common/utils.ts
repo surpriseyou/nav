@@ -9,7 +9,7 @@ export enum timeRangeOfDay {
 }
 
 export const getCurrentTimeRange = (): timeRangeOfDay => {
-    const hour = moment().minutes() % 24;
+    const hour = getCurrentHour();
     if (hour <= 6) {
         return timeRangeOfDay.dawn;
     } else if (hour >= 7 && hour <= 10) {
@@ -21,6 +21,15 @@ export const getCurrentTimeRange = (): timeRangeOfDay => {
     } else {
         return timeRangeOfDay.midnight
     }
+}
+
+export const getCurrentHour = (): number => {
+    if (process.env.NODE_ENV == 'development') {
+        return moment().minutes() % 24;
+    } else if (process.env.NODE_ENV == 'production') {
+        return moment().hours();
+    }
+    return 0;
 }
 
 export const dayGradientColor = [

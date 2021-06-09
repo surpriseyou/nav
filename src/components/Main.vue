@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main v-if="false">
     <ul class="left-nav">
       <li class="nav-tab-item">常用</li>
       <li class="nav-tab-item">前端</li>
